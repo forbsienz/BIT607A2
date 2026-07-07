@@ -1,0 +1,223 @@
+<!--
+==========================================================================
+File: contact.html
+Project: Snazzy Paws Grooming Website
+Purpose: Provides contact info, location map, and a direct messaging form.
+Notes: Uses Popover API for JS-free interactive cards.
+==========================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snazzy Paws Grooming - Contact</title>
+    <meta name="description"
+        content="Get in touch with Snazzy Paws Grooming. Find our salon location, opening hours, and contact details to ask questions or book your dog's next spa day.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="scroll-page">
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- ==========================================
+         1. GLOBAL HEADER & NAVIGATION
+         ========================================== -->
+    <header>
+        <nav class="topnav" aria-label="Primary navigation">
+            <a href="index.html" class="logo-container" aria-label="Return to home page">
+                <img src="images/snazzy-paws-logo.png" alt="Snazzy Paws Grooming Logo">
+            </a>
+
+            <div class="brand-titles">
+                <h1 class="company-name">Snazzy Paws Grooming</h1>
+                <h2 class="current-page">Contact</h2>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div id="desktop-nav" class="nav-content desktop-only">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile Navigation (Popover) -->
+            <div id="mobile-nav" popover class="nav-content mobile-only">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <button type="button" popovertarget="mobile-nav" class="hamburger"
+                aria-label="Toggle mobile navigation menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         2. MAIN CONTENT & INTERACTIVE CARDS
+         ========================================== -->
+    <main id="main-content" class="home-layout">
+
+        <div class="page-header">
+            <h2>Contact Us</h2>
+            <p>We would love to hear from you. Find our details, send a message, or learn about our team.</p>
+        </div>
+
+        <div class="card-container">
+
+            <!-- CARD 1: Contact Info -->
+            <article class="base-card interactive-card card-1">
+                <button type="button" popovertarget="modal-contact-info" class="icon-btn expand-icon" title="Expand"
+                    aria-label="Open contact information">+</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Get in Touch</h2>
+                        <p class="preview-text">Our location, hours, and contact details.</p>
+                    </header>
+                    <button type="button" popovertarget="modal-contact-info" class="btn btn-dark">View Details</button>
+                </div>
+            </article>
+
+            <!-- Popover for Card 1 -->
+            <section id="modal-contact-info" popover class="popover-card card-1">
+                <button type="button" popovertarget="modal-contact-info" popovertargetaction="hide"
+                    class="icon-btn close-x-btn" aria-label="Close details">✕</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Get in Touch</h2>
+                        <p class="preview-text">Our location, hours, and contact details.</p>
+                    </header>
+                    <div class="expanded-content">
+                        <ul class="list-styled contact-info-list" aria-label="Contact details">
+                            <li>📍 Formation Dr The Base Parade, Te Rapa, Hamilton 3200, NZ</li>
+                            <li>📞 (07) 555-1234</li>
+                            <li>✉️ hello@snazzypaws.co.nz</li>
+                        </ul>
+                        <div class="map-wrapper">
+                            <!-- loading="lazy" defers loading the heavy Google Maps iframe until it is actually needed/visible -->
+                            <iframe
+                                src="https://maps.google.com/maps?q=Formation+Dr,+The+Base+Parade,+Te+Rapa,+Hamilton+3200,+NZ&output=embed"
+                                allowfullscreen="" loading="lazy"
+                                title="Google Maps location of Snazzy Paws Grooming"></iframe>
+                        </div>
+                    </div>
+                    <button type="button" popovertarget="modal-contact-info" popovertargetaction="hide"
+                        class="btn btn-dark close-btn">Close</button>
+                </div>
+            </section>
+
+            <!-- CARD 2: Direct Message -->
+            <article class="base-card interactive-card card-2">
+                <button type="button" popovertarget="modal-contact-message" class="icon-btn expand-icon" title="Expand"
+                    aria-label="Open message form">+</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Send a Message</h2>
+                        <p class="preview-text">Have a question? Send us a quick message.</p>
+                    </header>
+                    <button type="button" popovertarget="modal-contact-message" class="btn btn-dark">Write
+                        Message</button>
+                </div>
+            </article>
+
+            <!-- Popover for Card 2 -->
+            <section id="modal-contact-message" popover class="popover-card card-2">
+                <button type="button" popovertarget="modal-contact-message" popovertargetaction="hide"
+                    class="icon-btn close-x-btn" aria-label="Close message form">✕</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Send a Message</h2>
+                        <p class="preview-text">Have a question? Send us a quick message.</p>
+                    </header>
+                    <div class="expanded-content">
+
+                        <!-- CSS-only success state triggered via URL hash targeting this ID -->
+                        <div id="message-success" class="success-message" role="alert">
+                            <h2>Message Sent! 🐾</h2>
+                            <p>Thank you! We have received your inquiry and will respond shortly.</p>
+                            <br>
+                            <a href="contact.html" class="btn btn-primary"
+                                style="display: inline-block; text-align: center; text-decoration: none;">Send
+                                Another</a>
+                        </div>
+                        <form id="the-contact-form" class="booking-form" action="#message-success">
+                            <input type="text" aria-label="Your Name" name="name" placeholder="Your Name" required>
+                            <input type="email" aria-label="Your Email Address" name="email"
+                                placeholder="Your Email Address" required>
+                            <textarea aria-label="Your Message" name="message" placeholder="Type your message here..."
+                                rows="5" class="custom-message-box" required></textarea>
+                            <button type="submit" class="btn btn-primary full-width">Send Message</button>
+                        </form>
+                    </div>
+                    <button type="button" popovertarget="modal-contact-message" popovertargetaction="hide"
+                        class="btn btn-dark close-btn">Close</button>
+                </div>
+            </section>
+
+            <!-- CARD 3: About Us -->
+            <article class="base-card interactive-card card-3">
+                <button type="button" popovertarget="modal-contact-about" class="icon-btn expand-icon" title="Expand"
+                    aria-label="Open about us information">+</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Owners & Partners</h2>
+                        <p class="preview-text">Learn about our team and trusted local partners.</p>
+                    </header>
+                    <button type="button" popovertarget="modal-contact-about" class="btn btn-dark">Read More</button>
+                </div>
+            </article>
+
+            <section id="modal-contact-about" popover class="popover-card card-3">
+                <button type="button" popovertarget="modal-contact-about" popovertargetaction="hide"
+                    class="icon-btn close-x-btn" aria-label="Close details">✕</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Owners & Partners</h2>
+                    </header>
+                    <div class="expanded-content">
+                        <h2>About Our Team</h2>
+                        <p>Snazzy Paws Grooming is proudly owned and operated by passionate pet lovers dedicated to
+                            providing top-tier, stress-free care for your furry best friends.</p>
+
+                        <h2>Our Local Partners</h2>
+
+                        <ul>
+                            <li>Te Rapa Vet Clinic: Trusted veterinary care located in the same shopping centre.</li>
+                            <li>Te Rapa Pet's R Us: Premium food and accessories for healthy pets.</li>
+                            <li>Fur-real Training: Expert behavioral classes and puppy school.</li>
+                        </ul>
+                    </div>
+                    <button type="button" popovertarget="modal-contact-about" popovertargetaction="hide"
+                        class="btn btn-dark close-btn">Close</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ==========================================
+         3. GLOBAL FOOTER
+         ========================================== -->
+    <footer class="main-footer">
+        <section class="hours-block" aria-label="Business hours">
+            <p>Opening Hours: Mon-Sat 9am - 5pm</p>
+        </section>
+    </footer>
+</body>
+
+</html>

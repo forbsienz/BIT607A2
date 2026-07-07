@@ -1,0 +1,291 @@
+<!--
+==========================================================================
+File: services.html
+Project: Snazzy Paws Grooming Website
+Purpose: Outlines services, pricing tables, and educational content.
+Notes: Uses Popover API for JS-free interactive service detail cards.
+==========================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snazzy Paws Grooming - Services</title>
+    <meta name="description"
+        content="Professional dog grooming services in Hamilton, offering caring, reliable and professional grooming for dogs of all breeds.">
+    <meta name="author" content="Greg Forbes">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="scroll-page">
+
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- ==========================================
+         1. GLOBAL HEADER & NAVIGATION
+         ========================================== -->
+    <header>
+        <nav class="topnav" aria-label="Primary navigation">
+            <a href="index.html" class="logo-container" aria-label="Return to home page">
+                <img src="images/snazzy-paws-logo.png" alt="Snazzy Paws Grooming logo">
+            </a>
+
+            <div class="brand-titles">
+                <h1 class="company-name">Snazzy Paws Grooming</h1>
+                <h2 class="current-page">Services</h2>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div id="desktop-nav" class="nav-content desktop-only">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active" aria-current="page">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile Navigation (Popover) -->
+            <div id="mobile-nav" popover class="nav-content mobile-only">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active" aria-current="page">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Hamburger Toggle -->
+            <button type="button" class="hamburger" popovertarget="mobile-nav" aria-controls="mobile-nav"
+                aria-label="Open navigation menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         2. MAIN CONTENT & SERVICE CARDS
+         ========================================== -->
+    <main id="main-content" class="home-layout">
+
+        <div class="page-header">
+            <h2>Grooming Services</h2>
+            <p>Select a package below to explore pricing, treatments, and at home care tips.</p>
+        </div>
+
+        <div class="card-container">
+
+            <!--CARD 1: Standard Services -->
+            <!-- Using <article> because these cards represent independent, self-contained pieces of content -->
+            <article class="base-card interactive-card card-1">
+                <button type="button" popovertarget="modal-standard" class="icon-btn expand-icon" title="Expand"
+                    aria-label="View standard services pricing">+</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Standard Services</h2>
+                        <p class="preview-text">Everyday grooming essentials for your dog.</p>
+                    </header>
+                    <button type="button" popovertarget="modal-standard" class="btn btn-dark">View Pricing</button>
+                </div>
+            </article>
+
+            <!-- Popover for Card 1 -->
+            <section id="modal-standard" popover class="popover-card card-1">
+                <button type="button" popovertarget="modal-standard" popovertargetaction="hide"
+                    class="icon-btn close-x-btn" aria-label="Close pricing details">✕</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Standard Services</h2>
+                        <p class="preview-text">Everyday grooming essentials for your dog.</p>
+                    </header>
+                    <div class="expanded-content">
+                        <p>Our core grooming services to keep your pet clean, happy, and healthy.</p>
+
+                        <!-- Utilizing standard <table> semantics ensures screen readers can parse the tabular pricing data correctly -->
+                        <table class="services-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Service & Details</th>
+                                    <th scope="col" class="price-col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Nail Trim</strong><br>Trim nails and, in some cases, filing.</td>
+                                    <td class="price-col">$10-$20</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Ear Cleaning</strong><br>Gentle cleaning of ears to remove wax and
+                                        debris.</td>
+                                    <td class="price-col">$10-$15</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Teeth Brushing</strong><br>Brushing with pet-safe toothpaste.</td>
+                                    <td class="price-col">$10-$15</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bath and Brush</strong><br>Shampoo, blow-dry, brush-out and nail trim.
+                                    </td>
+                                    <td class="price-col">$25-$50</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Haircut</strong><br>Bath, blow-dry, haircut (based on breed standard or
+                                        owner's preference) and nail trim.</td>
+                                    <td class="price-col">$45-$85</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Full Grooming Package</strong><br>Comprehensive grooming service,
+                                        including bath, haircut, teeth brushing, nail trim and ear cleaning.</td>
+                                    <td class="price-col">$60-$120</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" popovertarget="modal-standard" popovertargetaction="hide"
+                        class="btn btn-dark close-btn">Close</button>
+                </div>
+            </section>
+
+            <!-- CARD 2: Specialised Treatments -->
+            <article class="base-card interactive-card card-2">
+                <button type="button" popovertarget="modal-specialised" class="icon-btn expand-icon" title="Expand"
+                    aria-label="View specialised treatments pricing">+</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Specialised Treatments</h2>
+                        <p class="preview-text">Targeted care and luxurious add-on packages.</p>
+                    </header>
+                    <button type="button" popovertarget="modal-specialised" class="btn btn-dark">View Pricing</button>
+                </div>
+            </article>
+
+            <!-- Popover for Card 2 -->
+            <section id="modal-specialised" popover class="popover-card card-2">
+                <button type="button" popovertarget="modal-specialised" popovertargetaction="hide"
+                    class="icon-btn close-x-btn" aria-label="Close pricing details">✕</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Specialised Treatments</h2>
+                        <p class="preview-text">Targeted care and luxurious add-on packages.</p>
+                    </header>
+                    <div class="expanded-content">
+                        <p>Specific treatments for unique needs, puppies, seniors, and special breeds.</p>
+                        <table class="services-table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Service & Details</th>
+                                    <th scope="col" class="price-col">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Express Service</strong><br>For dogs that need minimal grooming or a
+                                        quick touch-up.</td>
+                                    <td class="price-col">+$15-$25</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Flea and Tick Treatment</strong><br>Shampoo and preventative treatment.
+                                    </td>
+                                    <td class="price-col">$15-$30</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>De-shedding Treatment</strong><br>Special shampoo and undercoat removal
+                                        (in addition to bath or haircut).</td>
+                                    <td class="price-col">+$20-$40</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Medicated Bath</strong><br>For pets with skin conditions requiring
+                                        special shampoo.</td>
+                                    <td class="price-col">+$20-$40</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Puppy Package</strong><br>Introductory grooming services tailored for
+                                        puppies.</td>
+                                    <td class="price-col">$30-$60</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Senior Dog Package</strong><br>Tailored for older dogs, often with
+                                        special handling and care.</td>
+                                    <td class="price-col">$40-$80</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Spa Package</strong><br>Bath, haircut, teeth brushing, nail trim and
+                                        sometimes special scents or conditioners.</td>
+                                    <td class="price-col">$75-$150</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Special-Breed Cuts</strong><br>Breed-specific cuts or styling based on
+                                        customer preference.</td>
+                                    <td class="price-col">Quoted after consultation</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" popovertarget="modal-specialised" popovertargetaction="hide"
+                        class="btn btn-dark close-btn">Close</button>
+                </div>
+            </section>
+
+            <!-- CARD 3: Educational Content -->
+            <article class="base-card interactive-card card-3">
+                <button type="button" popovertarget="modal-dog-care" class="icon-btn expand-icon" title="Expand"
+                    aria-label="View dog care education">+</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Dog Care Education</h2>
+                        <p class="preview-text">Best practices for grooming your dog at home.</p>
+                    </header>
+                    <button type="button" popovertarget="modal-dog-care" class="btn btn-dark">Learn More</button>
+                </div>
+            </article>
+
+            <!-- Popover for Card 3 -->
+            <section id="modal-dog-care" popover class="popover-card card-3">
+                <button type="button" popovertarget="modal-dog-care" popovertargetaction="hide"
+                    class="icon-btn close-x-btn" aria-label="Close educational details">✕</button>
+                <div class="main-body">
+                    <header>
+                        <h2>Dog Care Education</h2>
+                        <p class="preview-text">Best practices for grooming your dog at home.</p>
+                    </header>
+                    <div class="expanded-content">
+                        <p>Maintaining your dog's grooming routine between salon visits is crucial for their health and
+                            happiness.</p>
+                        <ul class="list-styled educational-list">
+                            <li><strong>Brushing:</strong> Regular brushing prevents painful matting and distributes
+                                natural oils across their coat. Short-haired dogs benefit from weekly brushing, while
+                                long-haired breeds may need it daily.</li>
+                            <li><strong>Nail Care:</strong> If you can hear your dog's nails clicking on the floor, they
+                                are too long! Long nails can affect their posture and joint health.</li>
+                            <li><strong>Ear Health:</strong> Check your dog's ears weekly for redness, bad odors, or
+                                excess wax, which can be signs of infection.</li>
+                            <li><strong>Dental Hygiene:</strong> Just like humans, dogs get plaque and tartar buildup.
+                                Use pet-safe toothpaste to brush their teeth regularly to prevent dental disease.</li>
+                        </ul>
+                    </div>
+                    <button type="button" popovertarget="modal-dog-care" popovertargetaction="hide"
+                        class="btn btn-dark close-btn">Close</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ==========================================
+         3. GLOBAL FOOTER
+         ========================================== -->
+    <footer class="main-footer">
+        <section class="hours-block" aria-label="Business hours">
+            <p>Opening Hours: Mon-Sat 9am - 5pm</p>
+        </section>
+    </footer>
+</body>
+
+</html>

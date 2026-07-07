@@ -1,0 +1,236 @@
+<!--
+==========================================================================
+File: booking.html
+Project: Snazzy Paws Grooming Website
+Purpose: Appointment request form utilizing native HTML5 validation.
+Notes: Uses semantic HTML5 and a CSS-only success message toggle.
+==========================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Ensures proper scaling and touch rendering on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snazzy Paws Grooming - Booking</title>
+    <meta name="description"
+        content="Schedule your dog's next grooming session at Snazzy Paws. Choose from our professional bath, brush, and haircut packages to keep your pet looking great.">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="scroll-page">
+
+    <!-- Accessibility: Allows keyboard users to bypass the navigation and jump straight to the content -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- ==========================================
+         1. GLOBAL HEADER & NAVIGATION
+         ========================================== -->
+    <header>
+        <nav class="topnav" aria-label="Primary navigation">
+            <a href="index.html" class="logo-container" aria-label="Return to home page">
+                <img src="images/snazzy-paws-logo.png" alt="Snazzy Paws Grooming Logo">
+            </a>
+
+            <div class="brand-titles">
+                <h1 class="company-name">Snazzy Paws Grooming</h1>
+                <h2 class="current-page">Booking</h2>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div id="desktop-nav" class="nav-content desktop-only">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <!-- aria-current="page" announces to screen readers that this is the active page -->
+                    <li><a href="booking.html" class="active" aria-current="page">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile Navigation (Popover) -->
+            <div id="mobile-nav" popover class="nav-content mobile-only">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="booking.html" class="active" aria-current="page">Booking</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Hamburger Toggle: Uses popovertarget to control #mobile-nav without JavaScript -->
+            <button type="button" popovertarget="mobile-nav" class="hamburger"
+                aria-label="Toggle mobile navigation menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         2. MAIN CONTENT & FORM
+         ========================================== -->
+    <main id="main-content" class="home-layout">
+
+        <div class="hero-section" style="padding-top: 0; padding-bottom: 0;">
+            <div class="page-header">
+                <h2>Book an Appointment</h2>
+                <p>Fill out the details below to request a grooming session for your furry friend.</p>
+            </div>
+        </div>
+
+        <div class="booking-page-wrapper">
+            <section class="base-card static-card">
+
+                <!-- 
+                    CSS-only success state:
+                    When the form is submitted, the URL hash becomes #booking-success.
+                    CSS uses the :target pseudo-class to reveal this div and hide the form below. 
+                -->
+                <div id="booking-success" class="success-message" role="alert">
+                    <h2>Booking Requested! 🐾</h2>
+                    <p>Thank you! We have received your request and will contact you shortly to confirm your appointment
+                        time.</p>
+                    <a href="booking.html" class="btn btn-primary"
+                        style="display:inline-block; text-decoration:none; margin-top:20px;">Book Another</a>
+                </div>
+
+                <!-- Action points to the ID above to trigger the CSS :target state on submit -->
+                <form id="the-booking-form" class="booking-form" action="#booking-success">
+                    <div class="form-grid">
+
+                        <div class="form-column">
+                            <h3>1. Your Details</h3>
+                            <input type="text" aria-label="Your Full Name" name="owner_name"
+                                placeholder="Your Full Name" required>
+                            <input type="email" aria-label="Your Email Address" name="owner_email"
+                                placeholder="Your Email Address" required>
+
+                            <h3 class="mt-20">2. Dog's Details</h3>
+                            <input type="text" aria-label="Dog's Name" name="dog_name" placeholder="Dog's Name"
+                                required>
+                            <div class="split-row">
+                                <input type="text" aria-label="Dog's Breed" name="dog_breed" placeholder="Breed"
+                                    required>
+                                <input type="number" aria-label="Dog's Age in Years" name="dog_age"
+                                    placeholder="Age (Yrs)" min="0" max="30" required>
+                            </div>
+                        </div>
+
+                        <div class="form-column">
+                            <h3>3. Main Grooming Package</h3>
+                            <select aria-label="Core Package" name="main_service" required>
+                                <!-- 'disabled selected' creates a placeholder option that cannot be chosen as a valid answer -->
+                                <option value="" disabled selected>Select a core package...</option>
+                                <option value="bath_brush">Bath and Brush ($25-$50)</option>
+                                <option value="haircut">Haircut Package ($45-$85)</option>
+                                <option value="full_groom">Full Grooming Package ($60-$120)</option>
+                                <option value="puppy">Puppy Package ($30-$60)</option>
+                                <option value="senior">Senior Dog Package ($40-$80)</option>
+                                <option value="spa">Luxury Spa Package ($75-$150)</option>
+                                <option value="special">Special-Breed Cut (Consultation)</option>
+                            </select>
+
+                            <h3 class="mt-20">4. Optional Add-ons</h3>
+                            <!-- Checkbox group allowing multiple selections under the same 'name' array -->
+                            <div class="checkbox-group add-on-grid">
+                                <!-- Wrapping inputs in <label> ensures the text is clickable, expanding the hit area for mobile -->
+                                <label>
+                                    <input type="checkbox" name="addon" value="nails">
+                                    <span class="addon-text">
+                                        <span class="addon-title">Nail Trim</span>
+                                        <span class="addon-price">$10-$20</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addon" value="ears">
+                                    <span class="addon-text">
+                                        <span class="addon-title">Ear Cleaning</span>
+                                        <span class="addon-price">$10-$15</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addon" value="teeth">
+                                    <span class="addon-text">
+                                        <span class="addon-title">Teeth Brushing</span>
+                                        <span class="addon-price">$10-$15</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addon" value="deshed">
+                                    <span class="addon-text">
+                                        <span class="addon-title">De-shedding</span>
+                                        <span class="addon-price">+$20-$40</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addon" value="flea">
+                                    <span class="addon-text">
+                                        <span class="addon-title">Flea & Tick</span>
+                                        <span class="addon-price">$15-$30</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addon" value="medicated">
+                                    <span class="addon-text">
+                                        <span class="addon-title">Med Bath</span>
+                                        <span class="addon-price">+$20-$40</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addon" value="express">
+                                    <span class="addon-text">
+                                        <span class="addon-title">Express Touch-up</span>
+                                        <span class="addon-price">+$15-$25</span>
+                                    </span>
+                                </label>
+                            </div>
+
+                            <h3 class="mt-20">5. Requested Date & Time</h3>
+                            <div class="split-row">
+                                <!-- type="date" triggers native date-picker interfaces on iOS/Android -->
+                                <input type="date" aria-label="Appointment date" name="appt_date" required="">
+                                <select aria-label="Appointment time" name="appt_time" required>
+                                    <option value="" disabled selected>Select time...</option>
+                                    <option value="09:00">09:00 AM</option>
+                                    <option value="09:30">09:30 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="10:30">10:30 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="11:30">11:30 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="12:30">12:30 PM</option>
+                                    <option value="13:00">01:00 PM</option>
+                                    <option value="13:30">01:30 PM</option>
+                                    <option value="14:00">02:00 PM</option>
+                                    <option value="14:30">02:30 PM</option>
+                                    <option value="15:00">03:00 PM</option>
+                                    <option value="15:30">03:30 PM</option>
+                                    <option value="16:00">04:00 PM</option>
+                                    <option value="16:30">04:30 PM</option>
+                                    <option value="17:00">05:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Request Booking</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- ==========================================
+         3. GLOBAL FOOTER
+         ========================================== -->
+    <footer class="main-footer">
+        <section class="hours-block" aria-label="Business hours">
+            <p>Opening Hours: Mon-Sat 9am - 5pm</p>
+        </section>
+    </footer>
+</body>
+
+</html>
