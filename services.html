@@ -1,9 +1,11 @@
 <!--
 ==========================================================================
+Greg Forbes 5154877
 File: services.html
-Project: Snazzy Paws Grooming Website
-Purpose: Outlines services, pricing tables, and educational content.
-Notes: Uses Popover API for JS-free interactive service detail cards.
+Project: BIT607 Assessment 2 - Snazzy Paws Grooming Website
+Purpose: Services page outlining grooming packages and educational content.
+Notes:  JS free as per assessment requirements. 
+        Uses the Popover API for interactive service detail cards.
 ==========================================================================
 -->
 <!DOCTYPE html>
@@ -21,7 +23,7 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
 </head>
 
 <body class="scroll-page">
-
+    <!-- Standard practice - allows keyboard users to bypass the navigation and jump straight to the content -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <!-- ==========================================
@@ -38,7 +40,7 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
                 <h2 class="current-page">Services</h2>
             </div>
 
-            <!-- Desktop Navigation -->
+            <!-- Desktop Navigation - visible on wider viewports only -->
             <div id="desktop-nav" class="nav-content desktop-only">
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -49,7 +51,7 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
                 </ul>
             </div>
 
-            <!-- Mobile Navigation (Popover) -->
+            <!-- Mobile Navigation - only visible on thinner viewports (Popover) -->
             <div id="mobile-nav" popover class="nav-content mobile-only">
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -60,9 +62,10 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
                 </ul>
             </div>
 
-            <!-- Hamburger Toggle -->
+            <!-- Hamburger Toggle - Uses popovertarget to control the #mobile-nav without JavaScript -->
             <button type="button" class="hamburger" popovertarget="mobile-nav" aria-controls="mobile-nav"
                 aria-label="Open navigation menu">
+                <!-- aria-hidden="true" prevents screen readers from announcing the visual hamburger bars (lines) -->
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
@@ -83,7 +86,7 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
         <div class="card-container">
 
             <!--CARD 1: Standard Services -->
-            <!-- Using <article> because these cards represent independent, self-contained pieces of content -->
+            <!-- Using <article> because these cards are independent, self-contained pieces of content -->
             <article class="base-card interactive-card card-1">
                 <button type="button" popovertarget="modal-standard" class="icon-btn expand-icon" title="Expand"
                     aria-label="View standard services pricing">+</button>
@@ -96,7 +99,7 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
                 </div>
             </article>
 
-            <!-- Popover for Card 1 -->
+            <!-- Popover for Card 1 - expanded content-->
             <section id="modal-standard" popover class="popover-card card-1">
                 <button type="button" popovertarget="modal-standard" popovertargetaction="hide"
                     class="icon-btn close-x-btn" aria-label="Close pricing details">✕</button>
@@ -166,7 +169,7 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
                 </div>
             </article>
 
-            <!-- Popover for Card 2 -->
+            <!-- Popover for Card 2 - expanded content -->
             <section id="modal-specialised" popover class="popover-card card-2">
                 <button type="button" popovertarget="modal-specialised" popovertargetaction="hide"
                     class="icon-btn close-x-btn" aria-label="Close pricing details">✕</button>
@@ -246,7 +249,7 @@ Notes: Uses Popover API for JS-free interactive service detail cards.
                 </div>
             </article>
 
-            <!-- Popover for Card 3 -->
+            <!-- Popover for Card 3 - expanded content -->
             <section id="modal-dog-care" popover class="popover-card card-3">
                 <button type="button" popovertarget="modal-dog-care" popovertargetaction="hide"
                     class="icon-btn close-x-btn" aria-label="Close educational details">✕</button>

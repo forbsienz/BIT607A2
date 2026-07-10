@@ -1,9 +1,10 @@
 <!--
 ==========================================================================
+Greg Forbes 5154877
 File: index.html
-Project: Snazzy Paws Grooming Website
+Project: BIT607 Assessment 2 - Snazzy Paws Grooming Website
 Purpose: Home page introducing the business and offering gift vouchers.
-Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
+Notes: JS free as per assessment requirements. Uses the Popover API for the voucher form.
 ==========================================================================
 -->
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
 
 <head>
     <meta charset="UTF-8">
-    <!-- Ensures proper scaling and touch rendering on mobile devices -->
+    <!-- Enables proper scaling and touch rendering on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Snazzy Paws Grooming - Home</title>
@@ -24,7 +25,7 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
 
 <body class="scroll-page">
 
-    <!-- Accessibility: Allows keyboard users to bypass the navigation and jump straight to the content -->
+    <!-- Standard practice - allows keyboard users to bypass the navigation and jump straight to the content -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <!-- ==========================================
@@ -42,7 +43,7 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
                 <h2 class="current-page">Home</h2>
             </div>
 
-            <!-- Desktop Navigation: Visible only on wider viewports -->
+            <!-- Desktop Navigation - Visible on wider viewports only -->
             <div id="desktop-nav" class="nav-content desktop-only">
                 <ul class="nav-links">
                     <!-- aria-current="page" announces to screen readers that this is the active page -->
@@ -54,7 +55,7 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
                 </ul>
             </div>
 
-            <!-- Mobile Navigation: Hidden by default, toggled via the Popover API -->
+            <!-- Mobile Navigation - Only visible on smaller screens, toggled via the Popover API -->
             <div id="mobile-nav" popover class="nav-content mobile-only">
                 <ul class="nav-links">
                     <li><a href="index.html" class="active" aria-current="page">Home</a></li>
@@ -68,7 +69,7 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
             <!-- Hamburger Toggle: Uses popovertarget to control the #mobile-nav without JavaScript -->
             <button type="button" class="hamburger" popovertarget="mobile-nav" aria-controls="mobile-nav"
                 aria-label="Open navigation menu">
-                <!-- aria-hidden="true" prevents screen readers from announcing the visual hamburger bars -->
+                <!-- aria-hidden="true" prevents screen readers from announcing the visual hamburger bars (lines) -->
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
                 <span class="bar" aria-hidden="true"></span>
@@ -79,7 +80,7 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
     <!-- ==========================================
          2. MAIN PAGE CONTENT
          ========================================== -->
-    <!-- id="main-content" acts as the target anchor for the .skip-link -->
+    <!-- id="main-content" acts as the target anchor for the .skip-link above -->
     <main id="main-content" class="home-layout">
 
         <!-- Hero Banner -->
@@ -104,7 +105,7 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
                     our knowledge of dog care best practices with our community.</p>
             </section>
 
-            <!-- Voucher Card (Preview/Trigger) -->
+            <!-- Voucher Card (Preview) -->
             <section class="base-card static-card card-2 voucher-card">
                 <!-- Triggers the #voucher-modal popover below -->
                 <button type="button" popovertarget="voucher-modal" class="icon-btn expand-icon"
@@ -112,6 +113,11 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
 
                 <div class="voucher-preview">
                     <h2>Gift Vouchers</h2>
+                    <div id="voucher-success" class="success-message" style="background-color: rgba(255,255,255,0.95); padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--primary); box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <h3 style="color: var(--primary); margin-bottom: 5px; font-size: 1.2rem;">Success!</h3>
+                        <p style="margin-bottom: 10px; font-size: 0.95rem; color: #333;">Your voucher has been purchased.</p>
+                        <a href="#" class="btn btn-dark" style="padding: 8px 16px; font-size: 0.85rem;">Dismiss</a>
+                    </div>
                     <p>Treat a furry friend to a spa day!</p>
                     <p>Paws gift vouchers are the perfect present for both pet lovers and your furry friends.</p>
                     <button type="button" popovertarget="voucher-modal" class="btn btn-dark mt-20">Buy a
@@ -123,20 +129,20 @@ Notes: Uses semantic HTML5 and the HTML Popover API for JS-free modals.
                  3. MODALS (POPOVER API)
                  ========================================== -->
             <!-- 
-                 The Popover API natively elevates this element to the top layer 
-                 and handles open/close states and backdrop clicking natively 
+                 The Popover API natively elevates this element to the top layer and 
+                 handles open/close states and backdrop clicking. 
             -->
             <section id="voucher-modal" popover class="popover-card card-2 voucher-card" role="dialog" aria-modal="true"
                 aria-labelledby="voucher-heading">
                 <button type="button" popovertarget="voucher-modal" popovertargetaction="hide"
                     class="icon-btn close-x-btn" aria-label="Close gift voucher form">✕</button>
-
+                <!-- Expanded voucher modal content -->
                 <div class="expanded-content">
                     <div class="form-container">
                         <h2 id="voucher-heading">Purchase a Voucher</h2>
                         <div class="form-container">
                             <h2 id="voucher-heading">Purchase a Voucher</h2>
-                            <form class="booking-form" method="post">
+                            <form class="booking-form" action="#voucher-success" method="GET">
 
                                 <label for="buyer-name">Your Name</label>
                                 <input id="buyer-name" name="buyer-name" type="text" placeholder="e.g. John Doe"
