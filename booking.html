@@ -1,236 +1,349 @@
-<!--
-==========================================================================
-Greg Forbes 5154877
-File: booking.html
-Project: BIT607 Assessment 2 - Snazzy Paws Grooming Website
-Purpose: Appointment request form utilizing native HTML5 validation.
-==========================================================================
--->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!-- Google Analytics tracking script -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWHRCL3EZL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function analytics() { dataLayer.push(arguments); }
+        analytics('js', new Date());
+
+        analytics('config', 'G-SWHRCL3EZL');
+    </script>
+
     <meta charset="UTF-8">
-    <!-- Ensures proper scaling and touch rendering on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snazzy Paws Grooming - Booking</title>
     <meta name="description"
         content="Schedule your dog's next grooming session at Snazzy Paws. Choose from our professional bath, brush, and haircut packages to keep your pet looking great.">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Custom stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="scroll-page">
+<body>
 
-    <!-- Accessibility - Allows keyboard users to bypass the navigation and jump straight to the content -->
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-
-    <!-- ==========================================
-         1. GLOBAL HEADER & NAVIGATION
-         ========================================== -->
-    <header>
-        <nav class="topnav" aria-label="Primary navigation">
-            <a href="index.html" class="logo-container" aria-label="Return to home page">
-                <img src="images/snazzy-paws-logo.png" alt="Snazzy Paws Grooming Logo">
-            </a>
-
-            <div class="brand-titles">
-                <h1 class="company-name">Snazzy Paws Grooming</h1>
-                <h2 class="current-page">Booking</h2>
+    <!-- Page header and navigation -->
+    <header class="bg-primary shadow-sm sticky-top">
+        <nav class="navbar navbar-expand-md navbar-dark py-2 py-md-3">
+            <div class="container-fluid px-3 align-items-center">
+                <a class="navbar-brand d-flex align-items-center me-0 d-md-none" href="#" style="max-width: 80%;">
+                    <img src="images/snazzy-paws-logo.png" alt="Snazzy Paws Logo" class="logo-fluid me-2">
+                    <div class="d-flex flex-column" style="min-width: 0;">
+                        <h1 class="m-0 fs-fluid-title text-white lh-sm text-truncate">Snazzy Paws Grooming</h1>
+                        <span class="text-uppercase fw-bold text-white mt-1" style="font-size: 0.8rem;">Booking</span>
+                    </div>
+                </a>
+                <a class="navbar-brand d-none d-md-flex align-items-center me-4 p-0" href="#">
+                    <img src="images/snazzy-paws-logo.png" alt="Snazzy Paws Logo" class="logo-fluid">
+                </a>
+                <button class="navbar-toggler border-0 px-1 shadow-none ms-auto" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse flex-column align-items-stretch" id="navbarContent">
+                    <h1 class="d-none d-md-block m-0 mb-2 fs-fluid-title text-white text-center">Snazzy Paws Grooming
+                    </h1>
+                    <ul class="navbar-nav nav-fill w-100 snazzy-nav gap-2 gap-md-0 mt-3 mt-md-0 text-center">
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="services.html">Services</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="gallery.html">Gallery</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-semibold" href="booking.html"
+                                aria-current="page">Booking</a></li>
+                        <li class="nav-item"><a class="nav-link fw-semibold" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
             </div>
-
-            <!-- Desktop Navigation -->
-            <div id="desktop-nav" class="nav-content desktop-only">
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <!-- aria-current="page" announces to screen readers that this is the active page -->
-                    <li><a href="booking.html" class="active" aria-current="page">Booking</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Mobile Navigation (Popover) -->
-            <div id="mobile-nav" popover class="nav-content mobile-only">
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="booking.html" class="active" aria-current="page">Booking</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Hamburger Toggle - Uses popovertarget to control #mobile-nav without JavaScript -->
-            <button type="button" popovertarget="mobile-nav" class="hamburger"
-                aria-label="Toggle mobile navigation menu">
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-                <span class="bar" aria-hidden="true"></span>
-            </button>
         </nav>
     </header>
 
-    <!-- ==========================================
-         2. MAIN CONTENT & FORM
-         ========================================== -->
-    <main id="main-content" class="home-layout">
+    <main>
+        <section class="text-center py-5">
+            <h2>Book an Appointment</h2>
+            <p>Fill out the details below to request a grooming session for your furry friend.</p>
+        </section>
 
-        <div class="hero-section" style="padding-top: 0; padding-bottom: 0;">
-            <div class="page-header">
-                <h2>Book an Appointment</h2>
-                <p>Fill out the details below to request a grooming session for your furry friend.</p>
-            </div>
-        </div>
+        <div class="container px-4 pb-5" style="max-width: 1000px;">
+            <div class="card shadow-sm rounded-4 border-0 p-4 p-md-5 bg-white">
 
-        <div class="booking-page-wrapper">
-            <section class="base-card static-card">
-
-                <!-- 
-                    CSS-only success state:
-                    When the form is submitted, the URL hash becomes #booking-success.
-                    CSS uses the :target pseudo-class to reveal this div and hide the form below. 
-                -->
-                <div id="booking-success" class="success-message" role="alert">
-                    <h2>Booking Requested! 🐾</h2>
-                    <p>Thank you! We have received your request and will contact you shortly to confirm your appointment
-                        time.</p>
-                    <a href="booking.html" class="btn btn-primary"
-                        style="display:inline-block; text-decoration:none; margin-top:20px;">Book Another</a>
+                <div id="booking-success" class="alert alert-success text-center d-none shadow-sm rounded-4 py-5"
+                    role="alert">
+                    <h2 class="alert-heading fw-bold mb-3">Booking Requested! 🐾</h2>
+                    <p class="fs-5">Thank you! We have received your request and will contact you shortly to confirm
+                        your appointment time.</p>
+                    <button type="button" class="btn btn-primary rounded-pill px-4 mt-3 fw-bold"
+                        onclick="location.reload()">Book Another</button>
                 </div>
 
-                <!-- Action points to the ID above to trigger the CSS :target state on submit -->
-                <form id="the-booking-form" class="booking-form" action="#booking-success">
-                    <div class="form-grid">
+                <!-- Booking form starts here -->
+                <form id="the-booking-form" class="needs-validation" novalidate>
+                    <div class="row g-4 g-lg-5">
 
-                        <div class="form-column">
-                            <h3>1. Your Details</h3>
-                            <input type="text" aria-label="Your Full Name" name="owner_name"
-                                placeholder="Your Full Name" required>
-                            <input type="email" aria-label="Your Email Address" name="owner_email"
-                                placeholder="Your Email Address" required>
-
-                            <h3 class="mt-20">2. Dog's Details</h3>
-                            <input type="text" aria-label="Dog's Name" name="dog_name" placeholder="Dog's Name"
-                                required>
-                            <div class="split-row">
-                                <input type="text" aria-label="Dog's Breed" name="dog_breed" placeholder="Breed"
+                        <!-- Column 1: Customer and dog details -->
+                        <div class="col-12 col-lg-6 d-flex flex-column gap-3">
+                            <h3 class="h5 text-primary border-bottom border-primary border-opacity-25 pb-2 m-0 fw-bold">
+                                1. Your Details</h3>
+                            <div>
+                                <input type="text" class="form-control form-control-lg bg-white text-dark shadow-sm"
+                                    aria-label="Your Full Name" name="owner_name" placeholder="Your Full Name" required>
+                                <div class="invalid-feedback">Please enter your full name.</div>
+                            </div>
+                            <div>
+                                <input type="email" class="form-control form-control-lg bg-white text-dark shadow-sm"
+                                    aria-label="Your Email Address" name="owner_email" placeholder="Your Email Address"
                                     required>
-                                <input type="number" aria-label="Dog's Age in Years" name="dog_age"
-                                    placeholder="Age (Yrs)" min="0" max="30" required>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+
+                            <h3
+                                class="h5 text-primary border-bottom border-primary border-opacity-25 pb-2 m-0 mt-3 fw-bold">
+                                2. Dog's Details</h3>
+                            <div>
+                                <input type="text" class="form-control form-control-lg bg-white text-dark shadow-sm"
+                                    aria-label="Dog's Name" name="dog_name" placeholder="Dog's Name" required>
+                                <div class="invalid-feedback">Please enter your dog's name.</div>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control form-control-lg bg-white text-dark shadow-sm"
+                                        aria-label="Dog's Breed" name="dog_breed" placeholder="Breed" required>
+                                    <div class="invalid-feedback">Please enter a breed.</div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="number"
+                                        class="form-control form-control-lg bg-white text-dark shadow-sm"
+                                        aria-label="Dog's Age in Years" name="dog_age" placeholder="Age (Yrs)" min="0"
+                                        max="30" required>
+                                    <div class="invalid-feedback">Please enter a valid age.</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="form-column">
-                            <h3>3. Main Grooming Package</h3>
-                            <select aria-label="Core Package" name="main_service" required>
-                                <!-- 'disabled selected' creates a placeholder option that cannot be chosen as a valid answer -->
-                                <option value="" disabled selected>Select a core package...</option>
-                                <option value="bath_brush">Bath and Brush ($25-$50)</option>
-                                <option value="haircut">Haircut Package ($45-$85)</option>
-                                <option value="full_groom">Full Grooming Package ($60-$120)</option>
-                                <option value="puppy">Puppy Package ($30-$60)</option>
-                                <option value="senior">Senior Dog Package ($40-$80)</option>
-                                <option value="spa">Luxury Spa Package ($75-$150)</option>
-                                <option value="special">Special-Breed Cut (Consultation)</option>
-                            </select>
-
-                            <h3 class="mt-20">4. Optional Add-ons</h3>
-                            <!-- Checkbox group allowing multiple selections under the same 'name' array -->
-                            <div class="checkbox-group add-on-grid">
-                                <!-- Wrapping inputs in <label> ensures the text is clickable, expanding the hit area for mobile -->
-                                <label>
-                                    <input type="checkbox" name="addon" value="nails">
-                                    <span class="addon-text">
-                                        <span class="addon-title">Nail Trim</span>
-                                        <span class="addon-price">$10-$20</span>
-                                    </span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="addon" value="ears">
-                                    <span class="addon-text">
-                                        <span class="addon-title">Ear Cleaning</span>
-                                        <span class="addon-price">$10-$15</span>
-                                    </span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="addon" value="teeth">
-                                    <span class="addon-text">
-                                        <span class="addon-title">Teeth Brushing</span>
-                                        <span class="addon-price">$10-$15</span>
-                                    </span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="addon" value="deshed">
-                                    <span class="addon-text">
-                                        <span class="addon-title">De-shedding</span>
-                                        <span class="addon-price">+$20-$40</span>
-                                    </span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="addon" value="flea">
-                                    <span class="addon-text">
-                                        <span class="addon-title">Flea & Tick</span>
-                                        <span class="addon-price">$15-$30</span>
-                                    </span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="addon" value="medicated">
-                                    <span class="addon-text">
-                                        <span class="addon-title">Med Bath</span>
-                                        <span class="addon-price">+$20-$40</span>
-                                    </span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" name="addon" value="express">
-                                    <span class="addon-text">
-                                        <span class="addon-title">Express Touch-up</span>
-                                        <span class="addon-price">+$15-$25</span>
-                                    </span>
-                                </label>
+                        <!-- Column 2: Package selection and appointment time -->
+                        <div class="col-12 col-lg-6 d-flex flex-column gap-3">
+                            <h3 class="h5 text-primary border-bottom border-primary border-opacity-25 pb-2 m-0 fw-bold">
+                                3. Main Grooming Package</h3>
+                            <div>
+                                <select class="form-select form-select-lg bg-white text-dark shadow-sm"
+                                    aria-label="Core Package" name="main_service" required>
+                                    <option value="" disabled selected>Select a core package...</option>
+                                    <option value="bath_brush">Bath and Brush ($25-$50)</option>
+                                    <option value="haircut">Haircut Package ($45-$85)</option>
+                                    <option value="full_groom">Full Grooming Package ($60-$120)</option>
+                                    <option value="puppy">Puppy Package ($30-$60)</option>
+                                    <option value="senior">Senior Dog Package ($40-$80)</option>
+                                    <option value="spa">Luxury Spa Package ($75-$150)</option>
+                                    <option value="special">Special-Breed Cut (Consultation)</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a primary package.</div>
                             </div>
 
-                            <h3 class="mt-20">5. Requested Date & Time</h3>
-                            <div class="split-row">
-                                <!-- type="date" triggers native date-picker interfaces on iOS/Android -->
-                                <input type="date" aria-label="Appointment date" name="appt_date" required="">
-                                <select aria-label="Appointment time" name="appt_time" required>
-                                    <option value="" disabled selected>Select time...</option>
-                                    <option value="09:00">09:00 AM</option>
-                                    <option value="09:30">09:30 AM</option>
-                                    <option value="10:00">10:00 AM</option>
-                                    <option value="10:30">10:30 AM</option>
-                                    <option value="11:00">11:00 AM</option>
-                                    <option value="11:30">11:30 AM</option>
-                                    <option value="12:00">12:00 PM</option>
-                                    <option value="12:30">12:30 PM</option>
-                                    <option value="13:00">01:00 PM</option>
-                                    <option value="13:30">01:30 PM</option>
-                                    <option value="14:00">02:00 PM</option>
-                                    <option value="14:30">02:30 PM</option>
-                                    <option value="15:00">03:00 PM</option>
-                                    <option value="15:30">03:30 PM</option>
-                                    <option value="16:00">04:00 PM</option>
-                                    <option value="16:30">04:30 PM</option>
-                                    <option value="17:00">05:00 PM</option>
-                                </select>
+                            <h3
+                                class="h5 text-primary border-bottom border-primary border-opacity-25 pb-2 m-0 mt-3 fw-bold">
+                                4. Optional Add-ons</h3>
+                            <div class="row g-2">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-check p-2 rounded border bg-white shadow-sm">
+                                        <input class="form-check-input ms-1 mt-2" type="checkbox" name="addon"
+                                            value="nails" id="addonNails">
+                                        <label class="form-check-label ms-2 d-flex flex-column text-dark"
+                                            for="addonNails">
+                                            <span class="fw-semibold">Nail Trim</span>
+                                            <span class="small text-muted">$10-$20</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-check p-2 rounded border bg-white shadow-sm">
+                                        <input class="form-check-input ms-1 mt-2" type="checkbox" name="addon"
+                                            value="ears" id="addonEars">
+                                        <label class="form-check-label ms-2 d-flex flex-column text-dark"
+                                            for="addonEars">
+                                            <span class="fw-semibold">Ear Cleaning</span>
+                                            <span class="small text-muted">$10-$15</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-check p-2 rounded border bg-white shadow-sm">
+                                        <input class="form-check-input ms-1 mt-2" type="checkbox" name="addon"
+                                            value="teeth" id="addonTeeth">
+                                        <label class="form-check-label ms-2 d-flex flex-column text-dark"
+                                            for="addonTeeth">
+                                            <span class="fw-semibold">Teeth Brushing</span>
+                                            <span class="small text-muted">$10-$15</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-check p-2 rounded border bg-white shadow-sm">
+                                        <input class="form-check-input ms-1 mt-2" type="checkbox" name="addon"
+                                            value="deshed" id="addonDeshed">
+                                        <label class="form-check-label ms-2 d-flex flex-column text-dark"
+                                            for="addonDeshed">
+                                            <span class="fw-semibold">De-shedding</span>
+                                            <span class="small text-muted">+$20-$40</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-check p-2 rounded border bg-white shadow-sm">
+                                        <input class="form-check-input ms-1 mt-2" type="checkbox" name="addon"
+                                            value="flea" id="addonFlea">
+                                        <label class="form-check-label ms-2 d-flex flex-column text-dark"
+                                            for="addonFlea">
+                                            <span class="fw-semibold">Flea & Tick</span>
+                                            <span class="small text-muted">$15-$30</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-check p-2 rounded border bg-white shadow-sm">
+                                        <input class="form-check-input ms-1 mt-2" type="checkbox" name="addon"
+                                            value="medicated" id="addonMed">
+                                        <label class="form-check-label ms-2 d-flex flex-column text-dark"
+                                            for="addonMed">
+                                            <span class="fw-semibold">Med Bath</span>
+                                            <span class="small text-muted">+$20-$40</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-check p-2 rounded border bg-white shadow-sm">
+                                        <input class="form-check-input ms-1 mt-2" type="checkbox" name="addon"
+                                            value="express" id="addonExpress">
+                                        <label class="form-check-label ms-2 d-flex flex-column text-dark"
+                                            for="addonExpress">
+                                            <span class="fw-semibold">Express Touch-up</span>
+                                            <span class="small text-muted">+$15-$25</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3
+                                class="h5 text-primary border-bottom border-primary border-opacity-25 pb-2 m-0 mt-3 fw-bold">
+                                5. Requested Date & Time</h3>
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="date" class="form-control form-control-lg bg-white text-dark shadow-sm"
+                                        aria-label="Appointment date" name="appt_date" id="apptDate" required>
+                                    <div class="invalid-feedback" id="date-feedback">Please select a valid future date
+                                        (Mon-Sat).</div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <select class="form-select form-select-lg bg-white text-dark shadow-sm"
+                                        aria-label="Appointment time" name="appt_time" required>
+                                        <option value="" disabled selected>Select time...</option>
+                                        <option value="09:00">09:00 AM</option>
+                                        <option value="09:30">09:30 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="10:30">10:30 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="11:30">11:30 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="12:30">12:30 PM</option>
+                                        <option value="13:00">01:00 PM</option>
+                                        <option value="13:30">01:30 PM</option>
+                                        <option value="14:00">02:00 PM</option>
+                                        <option value="14:30">02:30 PM</option>
+                                        <option value="15:00">03:00 PM</option>
+                                        <option value="15:30">03:30 PM</option>
+                                        <option value="16:00">04:00 PM</option>
+                                        <option value="16:30">04:30 PM</option>
+                                        <option value="17:00">05:00 PM</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a time.</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary full-width">Request Booking</button>
+
+                    <!-- Submit button for booking request -->
+                    <button type="submit"
+                        class="btn btn-primary btn-lg w-100 mt-4 rounded-pill fw-bold shadow-sm py-3 text-uppercase">Request
+                        Booking</button>
                 </form>
-            </section>
+            </div>
         </div>
     </main>
 
-    <!-- ==========================================
-         3. GLOBAL FOOTER
-         ========================================== -->
-    <footer class="main-footer">
-        <section class="hours-block" aria-label="Business hours">
-            <p>Opening Hours: Mon-Sat 9am - 5pm</p>
+    <!-- Footer with opening hours and links -->
+    <footer class="bg-primary py-4 shadow-sm d-flex flex-column align-items-center justify-content-center">
+        <section class="m-0 text-white text-center">
+            <p class="fw-semibold m-0">Opening Hours: Mon-Sat 9am - 5pm</p>
+            <div class="mt-2">
+                <a href="privacy.html" class="text-white text-decoration-none me-3 small">Privacy Policy</a>
+                <a href="roster.html" class="text-white text-decoration-none small">Staff Portal</a>
+            </div>
         </section>
     </footer>
+
+    <!-- Bootstrap JavaScript bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Booking form validation and submit handling -->
+    <script>
+        (function () {
+            'use strict'
+
+            var form = document.getElementById('the-booking-form');
+            var successMessage = document.getElementById('booking-success');
+            var dateInput = document.getElementById('apptDate');
+            var dateFeedback = document.getElementById('date-feedback');
+
+            // Set minimum selectable date to today
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+            var minDate = yyyy + '-' + mm + '-' + dd;
+            dateInput.setAttribute('min', minDate);
+
+            // Custom validation: prevent Sunday booking
+            dateInput.addEventListener('input', function () {
+                var selectedDateValue = this.value;
+                if (selectedDateValue) {
+                    var parts = selectedDateValue.split('-');
+                    var localDate = new Date(parts[0], parts[1] - 1, parts[2]);
+
+                    if (localDate.getDay() === 0) {
+                        this.setCustomValidity('We are closed on Sundays.');
+                        dateFeedback.textContent = 'We are closed on Sundays. Please select a day between Monday and Saturday.';
+                    } else {
+                        this.setCustomValidity('');
+                        dateFeedback.textContent = 'Please select a valid future date (Mon-Sat).';
+                    }
+                }
+            });
+
+            // Handle form submission and show success message
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+
+                if (form.checkValidity()) {
+                    form.classList.add('d-none');
+                    successMessage.classList.remove('d-none');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+
+                form.classList.add('was-validated');
+            }, false);
+        })()
+    </script>
 </body>
 
 </html>
